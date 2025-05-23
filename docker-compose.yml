@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  api:
+    build:
+      context: .
+    container_name: groundingdino-api
+    restart: always
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=compute,utility
+    runtime: nvidia
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./weights:/app/weights
